@@ -16,8 +16,8 @@ GainTutorialPluginAudioProcessorEditor::GainTutorialPluginAudioProcessorEditor (
 {
     gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 20);
-    gainSlider.setRange(0.0f, 1.0f, 0.01f);
-    gainSlider.setValue(0.5f);
+    gainSlider.setRange(-60.0f, 0.0f, 0.01f);
+    gainSlider.setValue(-20.0f);
     gainSlider.addListener(this);
     addAndMakeVisible(gainSlider);
 

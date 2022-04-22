@@ -144,7 +144,7 @@ void GainTutorialPluginAudioProcessor::processBlock (juce::AudioBuffer<float>& b
 
         for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
         {
-            channelData[sample] = channelData[sample] * gain;
+            channelData[sample] = channelData[sample] * juce::Decibels::decibelsToGain(gain);
         }
     }
 }

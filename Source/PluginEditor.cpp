@@ -10,12 +10,18 @@
 #include "PluginEditor.h"
 
 //==============================================================================
+// Constructor
 GainTutorialPluginAudioProcessorEditor::GainTutorialPluginAudioProcessorEditor (GainTutorialPluginAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (400, 300);
+    gainSlider.setSliderStyle(juce::Slider::SliderStyle::LinearVertical);
+    gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 20);
+    gainSlider.setRange(0.0f, 1.0f, 0.01f);
+    gainSlider.setValue(0.5f);
+
+    addAndMakeVisible(gainSlider);
+
+    setSize (200, 300);
 }
 
 GainTutorialPluginAudioProcessorEditor::~GainTutorialPluginAudioProcessorEditor()
@@ -25,16 +31,13 @@ GainTutorialPluginAudioProcessorEditor::~GainTutorialPluginAudioProcessorEditor(
 //==============================================================================
 void GainTutorialPluginAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+    g.fillAll(juce::Colours::black);
 }
 
 void GainTutorialPluginAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+    gainSlider.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 75, 100, 150);
+
 }

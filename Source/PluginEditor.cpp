@@ -18,7 +18,7 @@ GainTutorialPluginAudioProcessorEditor::GainTutorialPluginAudioProcessorEditor (
     gainSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 50, 20);
     gainSlider.setRange(0.0f, 1.0f, 0.01f);
     gainSlider.setValue(0.5f);
-
+    gainSlider.addListener(this);
     addAndMakeVisible(gainSlider);
 
     setSize (200, 300);
@@ -40,4 +40,12 @@ void GainTutorialPluginAudioProcessorEditor::resized()
     // subcomponents in your editor..
     gainSlider.setBounds(getWidth() / 2 - 50, getHeight() / 2 - 75, 100, 150);
 
+}
+
+void GainTutorialPluginAudioProcessorEditor::sliderValueChanged(juce::Slider* slider)
+{
+    if (slider == &gainSlider)
+    {
+        audioProcessor.gain = gainSlider.getValue();
+    }
 }

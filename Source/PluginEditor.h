@@ -14,7 +14,7 @@
 //==============================================================================
 /**
 */
-class GainTutorialPluginAudioProcessorEditor  : public juce::AudioProcessorEditor
+class GainTutorialPluginAudioProcessorEditor  : public juce::AudioProcessorEditor, public juce::Slider::Listener
 {
 public:
     GainTutorialPluginAudioProcessorEditor (GainTutorialPluginAudioProcessor&);
@@ -24,8 +24,11 @@ public:
     void paint (juce::Graphics&) override;
     void resized() override;
 
+    virtual void sliderValueChanged(juce::Slider* slider) override;
+
 private:
     juce::Slider gainSlider; 
+    juce::Slider* sliderPtr = &gainSlider;
 
     GainTutorialPluginAudioProcessor& audioProcessor;
 
